@@ -8,3 +8,43 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+.events {
+  border: solid greenyellow;
+  size: 10px;
+  height: fit-content;
+  width: fit-content;
+  margin: 10px;
+}
+
+.the_event,.upcoming,.past{
+  border: solid rgb(255, 141, 1);
+  size: 10px;
+  height: fit-content;
+  width: fit-content;
+  margin: 10px;
+  background-color: bisque;
+}
+.list-group-attendees{
+  border: solid rgba(0, 0, 0, 0.295);
+  size: 10px;
+  height: fit-content;
+  width: fit-content;
+  margin: 10px;
+  background-color: rgba(48, 255, 231, 0.576);
+}
+.navbar {
+  display: flex;
+  justify-content:space-between;
+  padding: 10px;
+  background-color: #f1f1f1;
+}
+
+.btn-primary{
+  border: solid rgba(0, 0, 0, 0.295);
+  size: 10px;
+  height: fit-content;
+  width: fit-content;
+  margin: 10px;
+  background-color: rgb(0, 255, 76);
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}

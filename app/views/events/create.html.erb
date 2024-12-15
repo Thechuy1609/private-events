@@ -1,0 +1,18 @@
+<div class="navbar">
+  <% if user_signed_in? %>
+    <%= link_to "Main Page", events_path %>
+    <%= link_to "Profile", user_path(current_user) %>
+    <%= button_to 'Sign Out', destroy_user_session_path, method: :delete %>
+  <% else %>
+    <%= button_to 'Sign In', new_user_session_path %>
+  <% end %>
+</div>
+<br>
+<%= form_with(url: attend_event_path(@event), method: :post, local: true) do %>
+  <% if @event.attendees.include?(current_user) %>
+    <p>You are already attending this event.</p>
+    <%= button_to 'Cancel Attendance', unattend_event_path(@event), method: :delete, class: 'btn btn-danger' %>
+  <% else %>
+    <%= submit_tag 'Attend Event', class: 'btn btn-primary' %>
+  <% end %>
+<% end %>

@@ -1,0 +1,32 @@
+<div class="navbar">
+  <% if user_signed_in? %>
+    <%= link_to "Main Page", events_path %>
+    <%= link_to "Profile", user_path(current_user) %>
+    <%= button_to 'Sign Out', destroy_user_session_path, method: :delete %>
+  <% else %>
+    <%= button_to 'Sign In', new_user_session_path %>
+  <% end %>
+</div>
+<br>
+<%= form_with model: @event  do |f| %>
+  <% if @event.errors.any? %>
+    <ul>
+      <% @event.errors.full_messages.each do |error| %>
+        <li> <%= error %> </li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div class="form-group">
+     <%= f.label :title, placeholder: "Event title"%> <br>
+    <%= f.text_field :title, placeholder: "Event title"%> <br>
+  </div>
+  <div class="form-group">
+      <%= f.label :description, placeholder: "Event description"%> <br>
+    <%= f.text_area :description, placeholder: "Event description"%><br>
+  </div>
+  <div class="form-group">
+     <%= f.label :date%> <br>
+    <%= f.datetime_field :date_time%>
+  </div>
+  <%= f.submit%>
+<% end %>

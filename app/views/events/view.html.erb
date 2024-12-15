@@ -1,0 +1,18 @@
+<div class="navbar">
+  <% if user_signed_in? %>
+    <%= link_to "Main Page", events_path %>
+    <%= link_to "Profile", user_path(current_user) %>
+    <%= button_to 'Sign Out', destroy_user_session_path, method: :delete %>
+  <% else %>
+    <%= button_to 'Sign In', new_user_session_path %>
+  <% end %>
+</div>
+<br>
+
+<h1>Events</h1>
+  <div>
+  <% @euser_events.each do |event| %>
+  <div class="events">
+  <h2><%= event.title %></h2>
+  </div>
+<% end %>

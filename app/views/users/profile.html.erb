@@ -1,0 +1,29 @@
+<div class="navbar">
+  <% if user_signed_in? %>
+    <%= link_to "Main Page", events_path %>
+    <%= button_to 'Sign Out', destroy_user_session_path, method: :delete %>
+  <% else %>
+    <%= button_to 'Sign In', new_user_session_path %>
+  <% end %>
+</div>
+<br>
+
+<div>
+  <p><%= pluralize(current_user.created_events.count, 'event').upcase %> CREATED</p>
+  <div>
+    <% if current_user.created_events.any? %>
+      <% current_user.created_events.each do |event| %>
+        <%= link_to event.title, event_path(event) %>
+      <% end %>
+    <% else %>
+      <p>No events created yet.</p>
+    <% end %>
+  </div>
+
+  <p><%= pluralize(current_user.attended_events.count, 'event').upcase %> ATTENDED</p>
+  <div>
+    <% current_user.attended_events.each do |event| %>
+      <%= link_to event.title, event_path(event) %>
+    <% end %>
+  </div>
+</div>

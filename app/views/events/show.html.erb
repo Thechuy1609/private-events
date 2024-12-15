@@ -1,0 +1,41 @@
+
+<div class="navbar">
+  <% if user_signed_in? %>
+    <%= link_to "Main Page", events_path %>
+    <%= link_to "Profile", user_path(current_user) %>
+    <%= link_to "New Event", new_event_path %>
+    <%= button_to 'Sign Out', destroy_user_session_path, method: :delete %>
+  <% else %>
+    <%= button_to 'Sign In', new_user_session_path %>
+  <% end %>
+</div>
+<br>
+
+<div class="the_event">
+<h1><%= @event.title.titleize %></h1>
+<br>
+<p><%= @event.description %><p>
+<h2><%= @event.date_time %></h2>
+
+<% if @event.creator_id == (current_user.id) %>
+    <h1>Your Event</h1>
+<% elsif @event.attendees.include?(current_user) %>
+  <%= link_to 'Cancel Attendance', cancel_event_attendances_event_path, class: 'btn btn-outline-secondary' %>
+<% else %>
+  <%= link_to 'I\'m in', event_attendances_event_path, class: 'btn btn-primary' %>
+<% end %>
+</div>
+<p>ATTENDEES</p>
+
+<!-- Display attendees list -->
+<% if @event.attendees.empty? %>
+  <div class="list-group-attendees">
+    <li class="list-group-item text-muted">This event has no attendees yet</li>
+  </div>
+<% else %>
+  <div class="list-group">
+    <% @event.attendees.each do |attendee| %>
+      <li class="list-group-item"><%= attendee.email %></li>
+    <% end %>
+  </div>
+<% end %>
